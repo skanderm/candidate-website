@@ -86,6 +86,10 @@ defmodule CandidateWebsite.PageView do
     |> URI.encode()
   end
 
+  def data_exists?(data) do
+    !is_nil(data) && data != ""
+  end
+
   def truncate(text, options \\ []) do
     len = options[:length] || 30
     omi = options[:omission] || "..."

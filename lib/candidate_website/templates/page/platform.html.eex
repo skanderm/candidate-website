@@ -58,7 +58,7 @@
   </div>
   <div class="platform-issues-container">
     <%= for {issue, i} <- @issues |> Enum.filter(&(&1[:key_issue])) |> Enum.with_index() do %>
-      <%= render "chunk-issue.html", issue: issue, active: i == 0 %>
+      <%= render "chunk-issue.html", issue: issue, active: i == 0, conn: @conn %>
     <% end %>
   </div>
 </div>

@@ -130,10 +130,19 @@ defmodule CandidateWebsite.RequirePlug do
                        "metadata" => metadata = ~m(header intro priority show_on_homepage)
                      } ->
         priority = as_float(priority)
-        full = metadata["full_content"] || intro
+        full = metadata["full_content"] || nil
         icon = metadata["icon"] || %{}
         show_on_homepage = show_on_homepage == "Show"
-        ~m(title slug header intro priority full show_on_homepage icon)a
+        key_issue = metadata["key_issue"] || false
+        pull_quote = metadata["quote"] || nil
+        abstract_read_time = metadata["abstract_read_time"] || nil
+        full_read_time = metadata["full_read_time"] || nil
+        footnotes = metadata["footnotes"] || nil
+
+        ~m(
+          title slug header intro priority full show_on_homepage icon
+          key_issue pull_quote abstract_read_time full_read_time footnotes
+        )a
       end)
       |> Enum.sort(&by_priority/2)
 
