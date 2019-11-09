@@ -299,6 +299,7 @@ transition-rate = 0.2s
       letter-spacing 0.3px
       text-transform uppercase
       font-size 0.8em
+      margin-bottom 25px
       .label
         font-weight bold
         margin-right 5px
@@ -362,13 +363,7 @@ transition-rate = 0.2s
       .issue-body
         flexbox(flex)
         justify-content(flex-start)
-        // margin-top 1.5em
-        // padding 0 10%
-        // max-width 1440px
-        // margin-left auto
-        // margin-right auto
-        // width 100%
-        // display none
+        flex-direction(column)
 
         @media (min-width 960px)
           display block !important
@@ -399,8 +394,6 @@ transition-rate = 0.2s
         .deal-content-sublist
           font-size subtext-font-size
           margin-top 20px
-          // margin-bottom 20px
-          // test
 
         .default
           display block
@@ -410,7 +403,5 @@ transition-rate = 0.2s
     cursor pointer
 
   .accordion-content
-    // display none
-
     .default
       display block

@@ -25,20 +25,20 @@
       </div>
     <% end %>
 
-    <%= if data_exists?(@issue.abstract_read_time) || data_exists?(@issue.full_read_time) do %>
+    <%= if data_exists?(@issue.intro) || data_exists?(@issue.full) do %>
       <div class="issue-read-time">
         <span class="label">Read time</span>
-        <%= if data_exists?(@issue.abstract_read_time) do %>
+        <%= if data_exists?(@issue.intro) do %>
           <span class="time">
-            Abstract: <%= @issue.abstract_read_time %> min
+            Abstract: <%= read_time(@issue.intro) %> min
           </span>
         <% end %>
-        <%= if data_exists?(@issue.abstract_read_time) && data_exists?(@issue.full_read_time) do %>
+        <%= if data_exists?(@issue.intro) && data_exists?(@issue.full) do %>
           |
         <% end %>
-        <%= if data_exists?(@issue.full_read_time) do %>
+        <%= if data_exists?(@issue.full) do %>
           <span class="time">
-            Full: <%= @issue.full_read_time %> min
+            Full: <%= read_time(@issue.full) %> min
           </span>
         <% end %>
       </div>

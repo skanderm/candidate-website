@@ -86,8 +86,18 @@ defmodule CandidateWebsite.PageView do
     |> URI.encode()
   end
 
-  def data_exists?(data) do
-    !is_nil(data) && data != ""
+  def data_exists?(data) when not is_nil(data), do: data != ""
+  def data_exists?(_), do: false
+
+  def read_time(nil), do: nil
+  def read_time(text) do
+    time = text
+    |> String.split(" ")
+    |> Enum.count()
+    |> Kernel./(100) # words per minute
+    |> Kernel.trunc()
+
+    Enum.max([time, 1])
   end
 
   def truncate(text, options \\ []) do
