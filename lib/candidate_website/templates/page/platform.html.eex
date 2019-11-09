@@ -73,7 +73,7 @@
   </div>
   <div class="platform-issues-container">
     <%= for {issue, i} <- @issues |> Enum.filter(&(!&1[:key_issue])) |> Enum.with_index() do %>
-      <%= render "chunk-issue.html", issue: issue, active: false %>
+      <%= render "chunk-issue.html", issue: issue, active: false, conn: @conn %>
     <% end %>
   </div>
 </div>
@@ -89,6 +89,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
  $(document).ready(function($) {
+   var fragment = window.location.hash.substr(1)
+   if (fragment !== null && typeof(fragment) !== undefined) {
+     $('#' + fragment).find('.issue-content').slideDown('fast', function() {
+       $(this).parents('.issue-container').addClass('active')
+     })
+   }
+
    $('.platform-issues-container').
       find('.accordion-toggle').
       click(function(e) {
