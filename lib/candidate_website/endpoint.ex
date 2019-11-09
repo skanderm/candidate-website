@@ -7,6 +7,11 @@ defmodule CandidateWebsite.Endpoint do
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
+
+  if Application.get_env(:candidate_website, :basic_auth) do
+    plug BasicAuth, use_config: {:candidate_website, :basic_auth}
+  end
+
   plug(
     Plug.Static,
     at: "/",
