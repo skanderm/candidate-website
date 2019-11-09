@@ -215,12 +215,14 @@ transition-rate = 0.2s
   .issue-container
     flexbox(flex)
     flex-direction(column)
-    border-top camp-border
+    &:first-child
+      border-top 2px solid camp-primary
     border-bottom 2px solid camp-primary
 
     .issue-header
       flexbox(flex)
       align-items(center)
+      min-height 110px
       background-color inherit
       cursor pointer
       padding 25px
@@ -239,8 +241,9 @@ transition-rate = 0.2s
       .issue-carat
         background-color white
         color camp-primary
-        font-size 2em
+        font-size 2.5em
         margin 0 0 0 auto
+        line-height 0px
         transition background-color transition-rate
         &::before
           content "+"

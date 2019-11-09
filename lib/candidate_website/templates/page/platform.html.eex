@@ -57,8 +57,7 @@
     <span class="directions">Scroll down for other plans</span>
   </div>
   <div class="platform-issues-container">
-    <%# TODO: Swap key_issue negation once it's in Cosmos %>
-    <%= for {issue, i} <- @issues |> Enum.filter(&(!&1[:key_issue])) |> Enum.with_index() do %>
+    <%= for {issue, i} <- @issues |> Enum.filter(&(&1[:key_issue])) |> Enum.with_index() do %>
       <%= render "chunk-issue.html", issue: issue, active: i == 0 %>
     <% end %>
   </div>
@@ -66,6 +65,12 @@
 
 <div class="chunk" data-kind="donate" id="chunk-donate">
   <%= render "chunk-donate.html", assigns %>
+</div>
+
+<div class="platform-issues-container">
+  <%= for {issue, i} <- @issues |> Enum.filter(&(!&1[:key_issue])) |> Enum.with_index() do %>
+    <%= render "chunk-issue.html", issue: issue, active: false %>
+  <% end %>
 </div>
 
 <%= for chunk <- ["volunteer"] do %>
