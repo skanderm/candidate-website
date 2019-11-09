@@ -135,8 +135,6 @@ defmodule CandidateWebsite.RequirePlug do
         show_on_homepage = show_on_homepage == "Show"
         key_issue = metadata["key_issue"] || false
         pull_quote = metadata["quote"] || nil
-        abstract_read_time = metadata["abstract_read_time"] || nil
-        full_read_time = metadata["full_read_time"] || nil
         footnotes = metadata["footnotes"] || nil
 
         ~m(
