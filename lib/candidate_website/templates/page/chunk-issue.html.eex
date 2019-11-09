@@ -1,72 +1,71 @@
 <% issue = assigns.issue %>
-<div class="issue-container <%= if assigns.active, do: 'active', else: '' %>" id="<%= issue.slug %>" >
+<div class="issue-container <%= if @active, do: 'active', else: '' %>" id="<%= @issue.slug %>" >
   <div class="issue-header accordion-toggle" tabindex="0">
-    <%= if issue.icon[~s(imgix_url)] != "https://cosmic-s3.imgix.net/" do %>
-      <img class="issue-icon" src="<%= issue.icon[~s(imgix_url)] %>"/>
+    <%= if @issue.icon[~s(imgix_url)] != "https://cosmic-s3.imgix.net/" do %>
+      <img class="issue-icon" src="<%= @issue.icon[~s(imgix_url)] %>"/>
     <% end %>
     <h2 class="issue-title">
-      <%= issue.header %>
+      <%= @issue.header %>
     </h2>
     <div class="issue-carat"></div>
   </div>
 
   <div class="issue-content">
-    <%= if Map.has_key?(issue, :quote) do %>
+    <%= if Map.has_key?(@issue, :quote) do %>
       <div class="issue-quote">
-        <%= issue.quote %>
+        <%= @issue.quote %>
         <div class="share">
           Share:
-          <a href="<%= twitter_share_url(url(@conn) <> page_path(@conn, :platform), issue.slug, issue.quote) %>" title="Share to Twitter" class="social-share" target="_blank">
+          <a href="<%= twitter_share_url(url(@conn) <> page_path(@conn, :platform), @issue.slug, @issue.quote) %>" title="Share to Twitter" class="social-share" target="_blank">
             <%= render "twitter-icon.html" %>
           </a>
-          <a href="<%= facebook_share_url(url(@conn) <> page_path(@conn, :platform), issue.slug, issue.quote) %>" title="Share to Facebook" class="social-share" target="_blank">
+          <a href="<%= facebook_share_url(url(@conn) <> page_path(@conn, :platform), @issue.slug, @issue.quote) %>" title="Share to Facebook" class="social-share" target="_blank">
             <%= render "facebook-icon.html" %>
           </a>
         </div>
       </div>
     <% end %>
 
-    <%= if Map.has_key?(issue, :abstract_read_time) || Map.has_key?(issue, :full_read_time) do %>
+    <%= if Map.has_key?(@issue, :abstract_read_time) || Map.has_key?(@issue, :full_read_time) do %>
       <div class="issue-read-time">
         <span class="label">Read time</span>
-        <%= if Map.has_key?(issue, :abstract_read_time) do %>
+        <%= if Map.has_key?(@issue, :abstract_read_time) do %>
           <span class="time">
-            Abstract: <%= issue.abstract_read_time %> min
+            Abstract: <%= @issue.abstract_read_time %> min
           </span>
         <% end %>
-        <%= if Map.has_key?(issue, :abstract_read_time) &&
-        Map.has_key?(issue, :full_read_time) do %>
+        <%= if Map.has_key?(@issue, :abstract_read_time) && Map.has_key?(@issue, :full_read_time) do %>
           |
         <% end %>
-        <%= if Map.has_key?(issue, :full_read_time) do %>
+        <%= if Map.has_key?(@issue, :full_read_time) do %>
           <span class="time">
-            Full: <%= issue.full_read_time %> min
+            Full: <%= @issue.full_read_time %> min
           </span>
         <% end %>
       </div>
     <% end %>
 
-    <%= if Map.has_key?(issue, :intro) do %>
+    <%= if Map.has_key?(@issue, :intro) do %>
       <div class="issue-abstract">
-        <%= issue.intro %>
-        <a href="<%= twitter_share_url(url(@conn) <> page_path(@conn, :platform), issue.slug, issue.intro) %>" title="Share to Twitter" class="social-share" target="_blank">
+        <%= @issue.intro %>
+        <a href="<%= twitter_share_url(url(@conn) <> page_path(@conn, :platform), @issue.slug, @issue.intro) %>" title="Share to Twitter" class="social-share" target="_blank">
           <%= render "twitter-icon.html" %>
         </a>
-        <a href="<%= facebook_share_url(url(@conn) <> page_path(@conn, :platform), issue.slug, issue.intro) %>" title="Share to Facebook" class="social-share" target="_blank">
+        <a href="<%= facebook_share_url(url(@conn) <> page_path(@conn, :platform), @issue.slug, @issue.intro) %>" title="Share to Facebook" class="social-share" target="_blank">
           <%= render "facebook-icon.html" %>
         </a>
       </div>
     <% end %>
 
-    <%= if Map.has_key?(issue, :full) do %>
+    <%= if Map.has_key?(@issue, :full) do %>
       <div class="issue-body">
-        <%= raw(issue.full) %>
+        <%= raw(@issue.full) %>
       </div>
     <% end %>
 
-    <% if Map.has_key?(issue, :footnotes) do %>
+    <% if Map.has_key?(@issue, :footnotes) do %>
       <div class="issue-footnotes">
-        <% raw(issue.footnotes) %>
+        <% raw(@issue.footnotes) %>
       </div>
     <% end %>
 
