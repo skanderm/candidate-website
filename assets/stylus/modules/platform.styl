@@ -4,6 +4,9 @@ desktop-h2-font-size = 34px
 paragraph-font-size = 20px
 subtext-font-size = 18px
 
+camp-primary = #3c2d82
+camp-secondary = #f9d83d
+
 @media (max-width 960px)
   paragraph-font-size = 18px
   subtext-font-size = 16px
@@ -12,9 +15,11 @@ subtext-font-size = 18px
 #platform-hero-wrapper
   width 100%
   max-width 100%
-  background-color #3C2D82
+  background-color camp-secondary
 
 #platform-hero-container
+  hero-color = camp-primary
+
   flexbox(flex)
   flex-direction(row)
   justify-content(center)
@@ -50,7 +55,7 @@ subtext-font-size = 18px
 
       #hero-header-text
         font-size 64px
-        color #ffffff
+        color hero-color
         font-family primary_font_name
         text-align center
         font-size 64px
@@ -78,7 +83,8 @@ subtext-font-size = 18px
         width 100%
 
         #hero-divider-left
-          color #ffffff
+          color hero-color
+          border-top 1px solid hero-color
           margin-left 0
           margin-right 0
           width 100%
@@ -90,7 +96,7 @@ subtext-font-size = 18px
         margin 0em 12px
 
         #hero-divider-star
-          color #ffffff
+          color hero-color
           font-size 30px
 
 
@@ -101,7 +107,8 @@ subtext-font-size = 18px
         width 100%
 
         #hero-divider-right
-          color #ffffff
+          color hero-color
+          border-top 1px solid hero-color
           margin-left 0
           margin-right 0
           width 100%
@@ -113,7 +120,7 @@ subtext-font-size = 18px
 
       #hero-subheader-text
         font-size 20px
-        color #FFFFFF
+        color hero-color
         font-family secondary_font_name
         text-align center
         letter-spacing 1.35px
@@ -121,7 +128,7 @@ subtext-font-size = 18px
 #platform-table-of-contents-wrapper
   width 100%
   max-width 100%
-  background-color rgba(237,237,237,0.71)
+  background-color #EBEAF1
 
   @media (max-width 960px)
     display none
@@ -189,8 +196,8 @@ subtext-font-size = 18px
       text-transform uppercase
       color #4A5061
 
-camp-primary = #3c2d82
 camp-border = 1px solid camp-primary
+transition-rate = 0.2s
 .platform-issues-container
   flexbox(flex)
   flex-direction(column)
@@ -217,6 +224,7 @@ camp-border = 1px solid camp-primary
       background-color inherit
       cursor pointer
       padding 25px
+      transition background-color transition-rate
 
       .issue-icon
         margin-right 20px
@@ -233,6 +241,7 @@ camp-border = 1px solid camp-primary
         color camp-primary
         font-size 2em
         margin 0 0 0 auto
+        transition background-color transition-rate
         &::before
           content "+"
 

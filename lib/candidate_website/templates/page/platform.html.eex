@@ -82,21 +82,27 @@
    $('.platform-issues-container').
       find('.accordion-toggle').
       click(function(e) {
-        $(this).parents('.issue-container').toggleClass('active');
+        $(this).next().slideToggle('fast', function() {
+          $(this).parents('.issue-container').toggleClass('active')
+        })
       });
 
    $('.platform-issues-container').
       find('.accordion-toggle').
       on('keypress', function(e) {
         if (e.which === 13) {
-          $(this).parents('.issue-container').toggleClass('active');
+          $(this).next().slideToggle('fast', function() {
+            $(this).parents('.issue-container').toggleClass('active')
+          })
         }
       });
 
    $('.platform-issues-container').
       find('.issue-close').
       click(function() {
-        $(this).parents('.issue-container').removeClass('active');
+        $(this).parents('.issue-content').slideToggle('fast', function() {
+          $(this).parents('.issue-container').toggleClass('active')
+        })
       });
  });
 </script>
