@@ -39,3 +39,10 @@ config :candidate_website,
   osdi_api_event_url: "${OSDI_API_EVENT_URL}",
   osdi_api_token: "${OSDI_API_TOKEN}",
   mycampaign_api_key: "${MYCAMPAIGN_API_KEY}"
+
+if System.get_env("AUTH_USER") || System.get_env("AUTH_PASSWORD") do
+  config :candidate_website, basic_auth: [
+    username: System.get_env("AUTH_USER"),
+    password: System.get_env("AUTH_PASSWORD")
+  ]
+end

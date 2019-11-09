@@ -1,6 +1,10 @@
 defmodule CandidateWebsite.Router do
   use CandidateWebsite, :router
 
+  if Application.get_env(:candidate_website, :basic_auth) do
+    plug BasicAuth, use_config: {:candidate_website, :basic_auth}
+  end
+
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:fetch_session)
