@@ -1068,9 +1068,7 @@ button, .button, .button:hover, button:hover
           width 100%
 
         @media (min-width 961px)
-          padding 5em 4em
-          max-width 700px
-
+          padding 5em 0em
 
         #volunteer-form-object
           // Stuff
@@ -1083,13 +1081,13 @@ button, .button, .button:hover, button:hover
               flex-direction(column)
               padding 4em 0 4em 0
 
-            @media (min-width: 681px) and (max-width: 960px)
+            @media (min-width: 681px) and (max-width: 1280px)
               flex-direction(column)
+              max-width 700px
               padding 0 45px
 
             @media (min-width: 961px)
               flex-direction(row)
-
 
             #volunteer-options
               flexbox(flex)
@@ -1099,9 +1097,19 @@ button, .button, .button:hover, button:hover
               // @media (max-width: 960px)
               //   // Stuff
 
-              @media (min-width: 961px)
-                //width 50%
-                //margin-right 2em
+              @media (min-width: 1280px)
+                padding 0 80px
+                display grid
+                grid-template-columns 1fr 1fr
+                grid-column-gap 80px
+                #volunteer-form-text-block
+                #volunteer-form-checkbox-divider
+                #volunteer-checkboxes
+                  grid-column 1 / 2
+                .info-fields
+                  align-self stretch
+                  grid-column 2 / -1
+                  grid-row 1 / 4
 
               #volunteer-form-text-block
                 flexbox(flex)
