@@ -1,4 +1,3 @@
-<% issue = assigns.issue %>
 <div class="issue-container <%= if @active, do: 'active', else: '' %>" id="<%= @issue.slug %>" >
   <div class="issue-header accordion-toggle" tabindex="0">
     <%= if @issue.icon[~s(imgix_url)] != "https://cosmic-s3.imgix.net/" do %>
