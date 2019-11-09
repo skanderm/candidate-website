@@ -396,7 +396,8 @@
   }
 
   $(document).ready(function($) {
-    $('#platform-issues-container').find('.issue-container').find('.text-container').find('.accordion-toggle').click(function(){
+    $('.platform-issues-container').find('.issue-container').find('.text-container').find('.accordion-toggle').click(function(){
+
 
       //Expand or collapse this panel
       dropIcon($(this));
@@ -411,7 +412,7 @@
 </script>
 
 
-<div id="platform-issues-container">
+<div class="platform-issues-container">
   <%= for {paragraph, i} <- Enum.with_index(paragraphs) do %>
   <div class="issue-container" id="<%= paragraph.slug %>">
     <!-- Icon Container -->

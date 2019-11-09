@@ -9,7 +9,6 @@
       <div id="circle-<%= amount %>">
         <a class="circle" href="<%= @donate_url <> "?amount=#{amount}"%>">
           <span class="amount">$<%= amount %></span>
-          <!-- <span class="dollars">dollars</span> -->
         </a>
       </div>
     <% end %>

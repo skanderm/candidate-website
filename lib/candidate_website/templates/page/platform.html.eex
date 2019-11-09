@@ -1,14 +1,10 @@
 <%= render "nav-bar.html", assigns %>
 <div id="platform-hero-wrapper">
   <div id="platform-hero-container">
-    <!-- Background Image for the Hero block -->
-    <!-- <img src=""></img> -->
-
     <!-- Headline Text for the Hero block -->
     <div id="hero-text-container">
       <div id="hero-header-container">
         <h1 id="hero-header-text">
-          <!-- <%= "#{@name |> String.split(" ") |> List.first()}'s Platform" %> -->
           <%= gettext "%{name}'s Platform", name: @name %>
         </h1>
       </div>
@@ -53,94 +49,24 @@
   </div>
 </div>
 
-<!-- JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-  function dropIcon(varia) {
-    if (varia.find('.issue-carat')[0].innerHTML == "+") {
-      varia.find('.issue-carat')[0].innerHTML = "-";
-      } else {
-      varia.find('.issue-carat')[0].innerHTML = "+"
-      }
-  }
 
-  $(document).ready(function($) {
-    $('#platform-issues-container').find('.issue-container').find('.text-container').find('.accordion-toggle').click(function(){
-
-      //Expand or collapse this panel
-      dropIcon($(this));
-      $(this).next().slideToggle('fast');
-
-      //Hide the other panels
-      $('.accordion-toggle').not($(this)).each(function() {$(this).find('.issue-carat')[0].innerHTML = "+";});
-      $(".accordion-content").not($(this).next()).slideUp('fast');
-
-    });
-  });
-</script>
-
-
-<div id="platform-issues-container">
-  <%= for {issue, i} <- Enum.with_index(@issues) do %>
-  <div class="issue-container" id="<%= issue.slug %>">
-    <!-- Icon Container -->
-    <%= if issue.icon[~s(imgix_url)] != "https://cosmic-s3.imgix.net/" do %>
-    <div class="image-container">
-      <img class="issue-icon" src="<%= issue.icon[~s(imgix_url)] %>"/>
-    </div>
-    <% else %>
-    <div class="icon-container">
-      <p class="issue-number">
-        <!-- <%= i+1 %> -->
-        &#128488;
-      </p>
-    </div>
+<%# Key issues %>
+<div class="key-issues">
+  <div class="header">
+    <h2 class="title">Key Issues</h2>
+    <span class="directions">Scroll down for other plans</span>
+  </div>
+  <div class="platform-issues-container">
+    <%# TODO: Swap key_issue negation once it's in Cosmos %>
+    <%= for {issue, i} <- @issues |> Enum.filter(&(!&1[:key_issue])) |> Enum.with_index() do %>
+      <%= render "chunk-issue.html", issue: issue, active: i == 0 %>
     <% end %>
-    <!-- Text Container -->
-    <div class="text-container">
-      <!-- Header  -->
-      <div class="header-container accordion-toggle">
-        <h2 class="issue-header">
-           <%= issue.header %>
-        </h2>
-        <h2 class="issue-carat">+</h2>
-      </div>
-      <!-- Contents (Full-text)  -->
-      <div class="contents-container accordion-content">
-        <p class="issue-content">
-        <%= if issue.full != nil do %>
-          <%= raw(issue.full) %>
-        <% else %>
-          <%= raw(issue.intro) %>
-        <% end %>
-        </p>
-      </div>
-    </div>
   </div>
-  <div class="issue-divider-container">
-    <hr class="issue-divider"/>
-  </div>
-  <% end %>
 </div>
 
-<!-- <div id="platform-accordion-container">
-  <ul id="platform-accordion-contents">
-    <%= for {issue, i} <- Enum.with_index(@issues) do %>
-    <li id="issue">
-      <h2 class="accordion-toggle">
-        <%= issue.header %>
-      </h2>
-      <p class="accordion-content">
-      <%= if issue.full != nil do %>
-        <%= raw(issue.full) %>
-      <% else %>
-        <%= raw(issue.intro) %>
-      <% end %>
-      </p>
-    </li>
-    <% end %>
-  </ul>
-</div> -->
+<div class="chunk" data-kind="donate" id="chunk-donate">
+  <%= render "chunk-donate.html", assigns %>
+</div>
 
 <%= for chunk <- ["volunteer"] do %>
 <div class="chunk" data-kind="<%= chunk %>" id="chunk-<%= chunk %>">
@@ -149,3 +75,28 @@
 <% end %>
 
 <%= render "footer.html", assigns %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function($) {
+   $('.platform-issues-container').
+      find('.accordion-toggle').
+      click(function(e) {
+        $(this).parents('.issue-container').toggleClass('active');
+      });
+
+   $('.platform-issues-container').
+      find('.accordion-toggle').
+      on('keypress', function(e) {
+        if (e.which === 13) {
+          $(this).parents('.issue-container').toggleClass('active');
+        }
+      });
+
+   $('.platform-issues-container').
+      find('.issue-close').
+      click(function() {
+        $(this).parents('.issue-container').removeClass('active');
+      });
+ });
+</script>

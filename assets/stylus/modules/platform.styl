@@ -146,6 +146,7 @@ subtext-font-size = 18px
       flexbox(flex)
       flex-direction(column)
       justify-content(space-between)
+      align-self(center)
       margin 4px 0
       width 33.3%
       font-size 18px
@@ -167,18 +168,33 @@ subtext-font-size = 18px
       text-align left
       font-weight bold
       padding-right 8px
-    
+
       a
         color #3C2D82
 
-#platform-issues-container
+.key-issues
+  padding 20px 0
+  .header
+    padding 0 10%
+    margin-bottom 20px
+    flexbox(flex)
+    justify-content(space-between)
+    .title
+      margin 0
+      font-size 4em
+      color #111
+    .directions
+      align-self(flex-end)
+      text-decoration underline
+      text-transform uppercase
+      color #4A5061
+
+camp-primary = #3c2d82
+camp-border = 1px solid camp-primary
+.platform-issues-container
   flexbox(flex)
   flex-direction(column)
-
-  @media (max-width 960px)
-    // Hi
-
-  @media (min-width 961px)
+  @media (min-width 960px)
     padding 0 10%
     max-width 1440px
     margin-left auto
@@ -191,119 +207,129 @@ subtext-font-size = 18px
 
   .issue-container
     flexbox(flex)
-    flex-direction(row)
-    justify-content(flex-start)
+    flex-direction(column)
+    border-top camp-border
+    border-bottom 2px solid camp-primary
 
-    @media (max-width 960px)
-      // None
-
-    @media (min-width 961px)
-      padding 4em 0
-
-    .icon-container
-      border-radius 50%
-      border 15px solid #3C2D82
-
-    .image-container
-    .icon-container
-      flex-shrink(0)
+    .issue-header
       flexbox(flex)
-      justify-content(center)
       align-items(center)
-      width 200px
-      height 200px
-      padding 8px
-      background #fff
-
-      @media (max-width 960px)
-        display none
-
-      @media (min-width 961px)
-        // None
-
-
+      background-color inherit
+      cursor pointer
+      padding 25px
 
       .issue-icon
-        //padding 10px
+        margin-right 20px
+        width 60px
+        font-size 2em
 
-      .issue-number
-        font-size 64px
-        font-family secondary_font_name
-        font-weight 700
-        color #3C2D82
-        // text-align center
-        // vertical-align middle
+      .issue-title
+        margin 0
+        font-size 2em
+        padding-right 20px
 
+      .issue-carat
+        background-color white
+        color camp-primary
+        font-size 2em
+        margin 0 0 0 auto
+        &::before
+          content "+"
 
-    .text-container
-      flex-shrink(1)
+    .issue-content
+      display none
+      padding 30px 20px
+
+    .issue-quote
+      font-size 1.5em
+      font-style italic
+      font-weight lighter
+      padding-bottom 20px
+      border-bottom camp-border
+      .share
+        margin-top 10px
+        font-style normal
+        font-weight bold
+        font-size 0.6em
+        text-transform uppercase
+        color #aaaaaa
+        letter-spacing 0.2px
+
+    .issue-read-time
       flexbox(flex)
-      flex-direction(column)
-      justify-content(flex-start)
-      align-items(flex-start)
+      padding 15px 0
+      border-bottom camp-border
+      letter-spacing 0.3px
+      text-transform uppercase
+      font-size 0.8em
+      .label
+        font-weight bold
+        margin-right 5px
+        color #111111
+      .time
+        margin 0 10px
+        font-weight lighter
+        letter-spacing 0.7px
 
-      @media (max-width 960px)
-        width 100%
 
-      @media (min-width 961px)
-        margin-left 130px
+    .issue-abstract
+      color #111111
+      font-size: 1.8em
+      font-weight bold
+      padding 25px 0
+      line-height 1.25em
+      border-bottom camp-border
 
-      .accordion-toggle
-        // Blah
+    .issue-body
+      padding 20px 0
 
-        @media (max-width 960px)
-          cursor pointer
+    .issue-footnotes
+      background-color #fdf5d1
+      padding 40px
+      border-radius 5px
+      line-height 2.2em
+      a
+        color #111111
+        text-decoration underline
 
-        @media (min-width 961px)
-          // Blah
+    .issue-close
+      cursor pointer
+      margin-top 50px
+      text-decoration underline
+      text-transform uppercase
 
-      .header-container
-        flexbox(flex)
-        justify-content(space-between)
+    &.active
+      .issue-content
+        display block
 
-        @media (max-width 960px)
-          padding 2em 10%
-          width 100%
-          margin-left auto
-          margin-right auto
-          background-color #f4f3f8
+      .issue-header
+        background-color camp-primary
 
-        @media (min-width 961px)
-          margin-bottom 1.5em
+      .issue-icon
+        display none
 
-        .issue-header
-          font-size 34px
-          color #3C2D82
+      .issue-title
+        color white
 
-          @media (max-width 960px)
-            margin 0 20px 0 0
+      .issue-carat
+        background-color camp-primary
+        color white
+        font-size 2em
+        &::before
+          content  "—"
 
-          @media (min-width 961px)
-            // Stuff
-
-        .issue-carat
-          @media (max-width 960px)
-            margin 0
-            font-size 40px
-            color #3C2D82
-
-          @media (min-width 961px)
-            display none
-
-      .contents-container
+      .issue-body
         flexbox(flex)
         justify-content(flex-start)
-        margin-top 1.5em
+        // margin-top 1.5em
+        // padding 0 10%
+        // max-width 1440px
+        // margin-left auto
+        // margin-right auto
+        // width 100%
+        // display none
 
-        @media (max-width 960px)
-          padding 0 10%
-          max-width 1440px
-          margin-left auto
-          margin-right auto
-          width 100%
-          display none
-
-        @media (min-width 961px)
+        @media (min-width 960px)
           display block !important
 
         .issue-content
@@ -338,6 +364,9 @@ subtext-font-size = 18px
         .default
           display block
 
+
+    //   .contents-container
+
 // Accordion Functionality
 
 @media (max-width 960px)
@@ -349,6 +378,3 @@ subtext-font-size = 18px
 
     .default
       display block
-
-
-  
